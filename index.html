@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <title>신한은행 호평지점 랜덤 이름 뽑기</title>
+    <meta
+      name="description"
+      content="호평지점 선/후배(동료) 이름을 랜덤으로 뽑는 웹 게임 (정적 HTML/CSS/JS)"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="container">
+      <header class="header">
+        <div>
+          <h1 class="title">호평지점 랜덤 이름 뽑기</h1>
+          <p class="subtitle">
+            이름을 입력하고 <strong>뽑기</strong>를 누르면 랜덤으로 한 명이 나옵니다.
+            <span class="muted">기본은 “중복 없이 전원 1회씩”.</span>
+          </p>
+        </div>
+        <div class="header-actions">
+          <button id="btnShare" class="btn btn-secondary" type="button" title="링크 복사">
+            링크 복사
+          </button>
+        </div>
+      </header>
+
+      <section class="grid">
+        <section class="card">
+          <div class="card-header">
+            <h2>이름 목록</h2>
+            <div class="pill" id="countPill">0명</div>
+          </div>
+
+          <label class="label" for="namesInput">이름(줄바꿈/쉼표로 구분)</label>
+          <textarea
+            id="namesInput"
+            class="textarea"
+            rows="8"
+            placeholder="예)&#10;양명민&#10;김명구&#10;김재희&#10;&#10;또는: 양명민, 김명구, 김재희"
+          ></textarea>
+
+          <div class="row">
+            <button id="btnSave" class="btn btn-primary" type="button">저장</button>
+            <button id="btnClearInput" class="btn btn-secondary" type="button">
+              입력 비우기
+            </button>
+          </div>
+
+          <div class="divider"></div>
+
+          <div class="row wrap">
+            <label class="checkbox">
+              <input id="chkNoRepeat" type="checkbox" />
+              <span>중복 없이(전원 1회씩)</span>
+            </label>
+            <label class="checkbox">
+              <input id="chkSound" type="checkbox" />
+              <span>소리(틱)</span>
+            </label>
+          </div>
+
+          <div class="row wrap">
+            <button id="btnResetDraw" class="btn btn-secondary" type="button">
+              뽑기 초기화
+            </button>
+            <button id="btnResetAll" class="btn btn-danger" type="button">
+              전체 초기화
+            </button>
+          </div>
+
+          <p class="hint">
+            팁: <kbd>Space</kbd>로 뽑기, <kbd>R</kbd>로 뽑기 초기화
+          </p>
+        </section>
+
+        <section class="card">
+          <div class="card-header">
+            <h2>뽑기</h2>
+            <div class="pill">
+              남은 인원: <span id="remainingCount">0</span>
+            </div>
+          </div>
+
+          <div class="draw-box" aria-live="polite" aria-atomic="true">
+            <div class="draw-label">이번 당첨자</div>
+            <div id="drawResult" class="draw-result">—</div>
+            <div id="drawMeta" class="draw-meta muted">이름을 저장한 뒤 시작하세요.</div>
+          </div>
+
+          <div class="row">
+            <button id="btnDraw" class="btn btn-primary btn-large" type="button">
+              뽑기
+            </button>
+            <button id="btnUndo" class="btn btn-secondary btn-large" type="button">
+              되돌리기
+            </button>
+          </div>
+
+          <div class="divider"></div>
+
+          <h3 class="h3">히스토리</h3>
+          <ol id="historyList" class="history"></ol>
+          <p id="historyEmpty" class="muted">아직 뽑은 사람이 없습니다.</p>
+        </section>
+      </section>
+
+      <footer class="footer muted">
+        정적 페이지입니다. 파일 업로드(예: 사내 웹서버/Netlify/GitHub Pages)만 하면 동작합니다.
+      </footer>
+    </main>
+
+    <script src="./app.js" defer></script>
+  </body>
+</html>
+
+
